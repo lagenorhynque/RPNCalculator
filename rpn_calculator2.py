@@ -1,4 +1,4 @@
-# 逆ポーランド記法電卓2 (関数型スタイル)
+# 逆ポーランド記法電卓 (関数型スタイル)
 
 from operator import add, sub, mul, truediv
 
