@@ -11,7 +11,7 @@ module RPNCalculator
   module_function
 
   def calculate(rpn)
-
+    # TODO: ロジックを実装
   end
 
   def ope_fn(ope)
