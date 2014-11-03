@@ -2,7 +2,7 @@
 
 class RPNCalculator2 {
   public static double calculate(String rpn) {
-    // ロジックを実装
+    // TODO: ロジックを実装
   }
 
   public static void main(String[] args) {
