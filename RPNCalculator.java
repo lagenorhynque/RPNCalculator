@@ -32,13 +32,13 @@ class RPNCalculator {
         return y / x;
       default:
         throw new UnsupportedOperationException(
-          "unsupported operator '" + ope + "' is used");
+          String.format("unsupported operator '%s' is used", ope));
     }
   }
 
   public static void main(String[] args) {
     // 利用例
     String rpn = "1 2 + 3 / 4 - 5 *";
-    System.out.println(rpn + "\n = " + calculate(rpn));
+    System.out.printf("%s\n = %s\n", rpn, calculate(rpn));
   }
 }
