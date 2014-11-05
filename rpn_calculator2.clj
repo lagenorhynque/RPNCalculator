@@ -24,8 +24,8 @@
   (if (contains? operators ope)
     (operators ope)
     (throw (UnsupportedOperationException.
-      (str "unsupported operator '" ope "' is used")))))
+      (format "unsupported operator '%s' is used" ope)))))
 
 ;; 利用例
 (let [rpn "1 2 + 3 / 4 - 5 *"]
-  (println rpn "\n = " (calculate rpn)))
+  (printf "%s%n = %s%n" rpn (calculate rpn)))

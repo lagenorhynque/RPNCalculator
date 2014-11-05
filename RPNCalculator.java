@@ -39,6 +39,6 @@ class RPNCalculator {
   public static void main(String[] args) {
     // 利用例
     String rpn = "1 2 + 3 / 4 - 5 *";
-    System.out.printf("%s\n = %s\n", rpn, calculate(rpn));
+    System.out.printf("%s%n = %s%n", rpn, calculate(rpn));
   }
 }
