@@ -9,12 +9,8 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 class RPNCalculator3 {
   private static final Map<String, BinaryOperator<Double>> OPERATORS;
-
-  private static BiFunction<Deque<Double>, String, Deque<Double>> calc;
 
   static {
     final Map<String, BinaryOperator<Double>> map = new HashMap<>();
@@ -26,8 +22,8 @@ class RPNCalculator3 {
   }
 
   public static double calculate(final String rpn) {
-    calc = (stack, x) -> {
-      if (NumberUtils.isDigits(x)) {
+    final BiFunction<Deque<Double>, String, Deque<Double>> calc = (stack, x) -> {
+      if (x.chars().allMatch(Character::isDigit)) {
         stack.addFirst(Double.parseDouble(x));
         return stack;
       } else {
@@ -36,13 +32,15 @@ class RPNCalculator3 {
         return stack;
       }
     };
-    // FIXME: コンパイルエラーを解消
     return Arrays.stream(rpn.split("\\s+"))
-      .reduce(new ArrayDeque<>(), calc, (l, r) -> l.addAll(r))
+      .reduce(new ArrayDeque<>(), calc, (l, r) -> {
+        l.addAll(r);
+        return l;
+      })
       .removeFirst();
   }
 
-  private static BinaryOperator<Double> opeFn(String ope) {
+  private static BinaryOperator<Double> opeFn(final String ope) {
     if (OPERATORS.containsKey(ope)) {
       return OPERATORS.get(ope);
     } else {
