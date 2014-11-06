@@ -13,7 +13,7 @@
 
 (defn calculate [rpn]
   (let [calc (fn [stack x]
-               (if (re-matches #"^\d+$" x)
+               (if (every? #(Character/isDigit %) x)
                  (cons (Double/parseDouble x) stack)
                  (let [[y1 y2 & ys] stack]
                    (cons ((ope-fn x) y2 y1) ys))))
