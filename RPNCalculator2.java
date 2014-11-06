@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 class RPNCalculator2 {
   private static final Map<String, BinaryOperator<Double>> OPERATORS;
 
@@ -34,7 +32,7 @@ class RPNCalculator2 {
 
       final String head = expr.get(0);
       final List<String> tail = expr.subList(1, expr.size());
-      if (NumberUtils.isDigits(head)) {
+      if (head.chars().allMatch(Character::isDigit)) {
         stack.addFirst(Double.parseDouble(head));
         return calc.apply(stack, tail);
       } else {
@@ -46,7 +44,7 @@ class RPNCalculator2 {
     return calc.apply(new ArrayDeque<>(), Arrays.asList(rpn.split("\\s+")));
   }
 
-  private static BinaryOperator<Double> opeFn(String ope) {
+  private static BinaryOperator<Double> opeFn(final String ope) {
     if (OPERATORS.containsKey(ope)) {
       return OPERATORS.get(ope);
     } else {
