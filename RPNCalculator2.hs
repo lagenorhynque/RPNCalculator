@@ -23,10 +23,10 @@ opeFn "+" = (+)
 opeFn "-" = (-)
 opeFn "*" = (*)
 opeFn "/" = (/)
-opeFn ope = error ("unsupported operator '" ++ ope ++ "' is used")
+opeFn ope = error $ "unsupported operator '" ++ ope ++ "' is used"
 
 -- 利用例
 main :: IO ()
-main = putStrLn (rpn ++ "\n = " ++ show (calculate rpn))
+main = putStrLn $ rpn ++ "\n = " ++ show (calculate rpn)
   where
     rpn = "1 2 + 3 / 4 - 5 *"
