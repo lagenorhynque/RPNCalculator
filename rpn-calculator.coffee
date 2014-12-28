@@ -36,4 +36,4 @@ RPNCalculator = do ->
 # 利用例
 do ->
   rpn = "1 2 + 3 / 4 - 5 *"
-  console.log(rpn, "\n = ", RPNCalculator.calculate(rpn))
+  console.log rpn, "\n = ", RPNCalculator.calculate(rpn)
