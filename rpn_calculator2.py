@@ -15,8 +15,7 @@ def calculate(rpn):
         if not expr:
             return stack[0]
 
-        head = expr[0]
-        tail = expr[1:]
+        head, *tail = expr
         if head.isdigit():
             return calc([int(head)] + stack, tail)
         else:
