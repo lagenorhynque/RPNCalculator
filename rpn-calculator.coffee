@@ -29,7 +29,7 @@ RPNCalculator = do ->
     if _.has(OPERATORS, ope)
       OPERATORS[ope]
     else
-      throw new Error("unsupported operator '" + ope + "' is used")
+      throw new Error("unsupported operator '#{ope}' is used")
 
   {calculate: calculate}
 
