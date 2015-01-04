@@ -1,6 +1,6 @@
 // 逆ポーランド記法電卓 (関数型スタイル)
 
-var _ = require("underscore");
+var _ = typeof require === "undefined" ? _ : require("underscore");
 
 var RPNCalculator2 = (function () {
   "use strict";

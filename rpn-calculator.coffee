@@ -1,6 +1,6 @@
 # 逆ポーランド記法電卓 (手続き型スタイル)
 
-_ = require("underscore")
+_ = if require? then require("underscore") else _
 
 RPNCalculator = do ->
   "use strict"
