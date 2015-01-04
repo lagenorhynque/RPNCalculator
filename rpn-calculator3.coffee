@@ -3,6 +3,8 @@
 _ = require("underscore")
 
 RPNCalculator3 = do ->
+  "use strict"
+
   OPERATORS = {
     "+": (x, y) ->
       y + x

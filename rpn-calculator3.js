@@ -3,6 +3,8 @@
 var _ = require("underscore");
 
 var RPNCalculator3 = (function () {
+  "use strict";
+
   var OPERATORS = {
     "+": function (x, y) {
       return y + x;
