@@ -22,19 +22,19 @@ var RPNCalculator2 = (function () {
 
   var calculate = function (rpn) {
     var calc = function calc (stack, expr) {
-      var head;
-      var tail;
+      var x;
+      var xs;
 
       if (_.isEmpty(expr)) {
         return stack[0];
       }
 
-      head = _.first(expr);
-      tail = _.rest(expr);
-      if (/^\d+$/.test(head)) {
-        return calc([parseInt(head, 10)].concat(stack), tail);
+      x = _.first(expr);
+      xs = _.rest(expr);
+      if (/^\d+$/.test(x)) {
+        return calc([parseInt(x, 10)].concat(stack), xs);
       } else {
-        return calc([opeFn(head)(stack[0], stack[1])].concat(_.rest(stack, 2)), tail);
+        return calc([opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2)), xs);
       }
     };
     return calc([], rpn.split(/\s+/));

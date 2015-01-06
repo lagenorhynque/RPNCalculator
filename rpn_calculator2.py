@@ -15,11 +15,11 @@ def calculate(rpn):
         if not expr:
             return stack[0]
 
-        head, *tail = expr
-        if head.isdigit():
-            return calc([int(head)] + stack, tail)
+        x, *xs = expr
+        if x.isdigit():
+            return calc([int(x)] + stack, xs)
         else:
-            return calc([_ope_fn(head)(stack[1], stack[0])] + stack[2:], tail)
+            return calc([_ope_fn(x)(stack[1], stack[0])] + stack[2:], xs)
     return calc([], rpn.split())
 
 

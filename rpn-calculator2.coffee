@@ -21,11 +21,11 @@ RPNCalculator2 = do ->
       if _.isEmpty(expr)
         return stack[0]
 
-      [head, tail...] = expr
-      if /^\d+$/.test(head)
-        calc([parseInt(head, 10)].concat(stack), tail)
+      [x, xs...] = expr
+      if /^\d+$/.test(x)
+        calc([parseInt(x, 10)].concat(stack), xs)
       else
-        calc([opeFn(head)(stack[0], stack[1])].concat(_.rest(stack, 2)), tail)
+        calc([opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2)), xs)
     calc([], rpn.split(/\s+/))
 
   opeFn = (ope) ->
