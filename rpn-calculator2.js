@@ -1,9 +1,9 @@
 // 逆ポーランド記法電卓 (関数型スタイル)
 
-var _ = typeof require === "undefined" ? _ : require("underscore");
-
-var RPNCalculator2 = (function () {
+(function () {
   "use strict";
+
+  var _ = typeof require === "undefined" ? this._ : require("underscore");
 
   var OPERATORS = {
     "+": function (x, y) {
@@ -47,13 +47,17 @@ var RPNCalculator2 = (function () {
       throw new Error("unsupported operator '" + ope + "' is used");
     }
   };
-  return {
+
+  var RPNCalculator2 =  {
     calculate: calculate
   };
-}());
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = RPNCalculator2;
+  } else {
+    this.RPNCalculator2 = RPNCalculator2;
+  }
 
-// 利用例
-(function () {
+  // 利用例
   var rpn = "1 2 + 3 / 4 - 5 *";
   console.log(rpn, "\n = ", RPNCalculator2.calculate(rpn));
-}());
+}.call(this));
