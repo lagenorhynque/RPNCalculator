@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var _ = typeof require === "undefined" ? this._ : require("underscore");
+  var _ = typeof require !== "undefined" ? require("underscore") : this._;
 
   var OPERATORS = {
     "+": function (x, y) {
