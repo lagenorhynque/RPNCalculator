@@ -15,7 +15,7 @@ module RPNCalculator3
       if x =~ /^\d+$/
         [x.to_i] + stack
       else
-        [ope_fn(x).call(stack[0], stack[1])] + stack[2..-1]
+        [ope_fn(x).(stack[0], stack[1])] + stack[2..-1]
       end
     }[0]
   end

@@ -11,19 +11,19 @@ module RPNCalculator2
   module_function
 
   def calculate(rpn)
-    def self.calc(stack, expr)
+    calc = lambda do |stack, expr|
       if expr.empty?
         return stack[0]
       end
 
       x, *xs = expr
       if x =~ /^\d+$/
-        calc([x.to_i] + stack, xs)
+        calc.([x.to_i] + stack, xs)
       else
-        calc([ope_fn(x).call(stack[0], stack[1])] + stack[2..-1], xs)
+        calc.([ope_fn(x).(stack[0], stack[1])] + stack[2..-1], xs)
       end
     end
-    calc([], rpn.split)
+    calc.([], rpn.split)
   end
 
   def ope_fn(ope)
