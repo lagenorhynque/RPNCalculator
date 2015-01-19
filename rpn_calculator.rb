@@ -31,6 +31,8 @@ module RPNCalculator
       raise NameError, "unsupported operator '#{ope}' is used"
     end
   end
+
+  private_class_method :ope_fn
 end
 
 if __FILE__ == $0
