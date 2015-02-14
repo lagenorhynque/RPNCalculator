@@ -17,7 +17,7 @@ module RPNCalculator2
       end
 
       x, *xs = expr
-      if x =~ /^[+-]?\d+$/
+      if x =~ /^\d+$/
         calc.([x.to_i] + stack, xs)
       else
         calc.([ope_fn(x).(stack[0], stack[1])] + stack[2..-1], xs)

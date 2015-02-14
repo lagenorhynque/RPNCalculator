@@ -22,7 +22,7 @@
 
   var calculate = function (rpn) {
     var calc = function (stack, x) {
-      if (/^[+-]?\d+$/.test(x)) {
+      if (/^\d+$/.test(x)) {
         return [parseInt(x, 10)].concat(stack);
       } else {
         return [opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2));

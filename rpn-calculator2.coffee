@@ -17,7 +17,7 @@ calculate = (rpn) ->
       return stack[0]
 
     [x, xs...] = expr
-    if /^[+-]?\d+$/.test(x)
+    if /^\d+$/.test(x)
       calc([parseInt(x, 10)].concat(stack), xs)
     else
       calc([opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2)), xs)

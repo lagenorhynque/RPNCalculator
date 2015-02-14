@@ -12,7 +12,7 @@ module RPNCalculator3
 
   def calculate(rpn)
     rpn.split.inject([]) { |stack, x|
-      if x =~ /^[+-]?\d+$/
+      if x =~ /^\d+$/
         [x.to_i] + stack
       else
         [ope_fn(x).(stack[0], stack[1])] + stack[2..-1]
