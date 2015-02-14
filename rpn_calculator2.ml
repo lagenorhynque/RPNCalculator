@@ -13,7 +13,7 @@ end = struct
     | ope -> failwith ("unsupported operator '" ^ ope ^ "' is used")
 
   let calculate rpn =
-    let rec calc stack = function
+    let calc stack = function
     | x when Str.string_match (Str.regexp "^[+-]?[0-9]+$") x 0 ->
       (float_of_string x) :: stack
     | x -> match stack with
