@@ -1,3 +1,5 @@
+(* 逆ポーランド記法電卓 (関数型スタイル) *)
+
 #load "str.cma"
 
 module RPNCalculator : sig
@@ -21,6 +23,7 @@ end = struct
     calc [] expr
 end
 
+(* 利用例 *)
 let () =
   let rpn = "1 2 + 3 / 4 - 5 *" in
   print_endline (rpn ^ "\n = " ^ string_of_float (RPNCalculator.calculate rpn))
