@@ -31,7 +31,7 @@
 
       x = _.first(expr);
       xs = _.rest(expr);
-      if (/^\d+$/.test(x)) {
+      if (/^[+-]?\d+$/.test(x)) {
         return calc([parseInt(x, 10)].concat(stack), xs);
       } else {
         return calc([opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2)), xs);

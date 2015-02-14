@@ -6,7 +6,7 @@
 
 calculate(Rpn) ->
   Calc = fun(X, Stack) ->
-    case re:run(X, "^[0-9]+$") of
+    case re:run(X, "^[+-]?[0-9]+$") of
       {match, _} ->
         [list_to_integer(X) | Stack];
       _ ->

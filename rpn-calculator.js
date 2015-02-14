@@ -30,7 +30,7 @@
 
     for (i = 0; i < len; i += 1) {
       elem = expr[i];
-      if (/^\d+$/.test(elem)) {
+      if (/^[+-]?\d+$/.test(elem)) {
         stack.push(parseInt(elem, 10));
       } else {
         res = opeFn(elem)(stack.pop(), stack.pop());

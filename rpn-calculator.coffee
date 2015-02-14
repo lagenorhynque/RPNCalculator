@@ -15,7 +15,7 @@ calculate = (rpn) ->
   expr = rpn.split(/\s+/)
   stack = []
   for elem in expr
-    if /^\d+$/.test(elem)
+    if /^[+-]?\d+$/.test(elem)
       stack.push(parseInt(elem, 10))
     else
       res = opeFn(elem)(stack.pop(), stack.pop())

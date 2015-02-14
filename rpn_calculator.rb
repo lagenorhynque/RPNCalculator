@@ -14,7 +14,7 @@ module RPNCalculator
     expr = rpn.split
     stack = []
     expr.each do |elem|
-      if elem =~ /^\d+$/
+      if elem =~ /^[+-]?\d+$/
         stack.push(elem.to_i)
       else
         res = ope_fn(elem).(stack.pop, stack.pop)

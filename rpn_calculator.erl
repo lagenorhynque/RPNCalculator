@@ -9,7 +9,7 @@ calculate(Rpn) ->
     Calc(Stack, []) ->
       hd(Stack);
     Calc(Stack, [X|Xs]) ->
-      case re:run(X, "^[0-9]+$") of
+      case re:run(X, "^[+-]?[0-9]+$") of
         {match, _} ->
           Calc([list_to_integer(X) | Stack], Xs);
         _ ->
