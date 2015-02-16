@@ -15,10 +15,14 @@
   (let [calc (fn [stack [x & xs :as expr]]
                (if (empty? expr)
                  (first stack)
-                 (if (every? #(Character/isDigit %) x)
-                   (recur (cons (Double/parseDouble x) stack) xs)
-                   (let [[y1 y2 & ys] stack]
-                     (recur (cons ((ope-fn x) y2 y1) ys) xs)))))
+                 (cond
+                   (every? #(Character/isDigit %) x)
+                     (recur (cons (Double/parseDouble x) stack) xs)
+                   (>= (count stack) 2)
+                     (let [[y1 y2 & ys] stack]
+                       (recur (cons ((ope-fn x) y2 y1) ys) xs))
+                   :else
+                     (throw (IllegalArgumentException. "unexpected pattern found")))))
         expr (split rpn #"\s+")]
     (calc () expr)))
 

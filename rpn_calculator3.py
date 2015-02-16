@@ -15,8 +15,10 @@ def calculate(rpn):
     def calc(stack, x):
         if x.isdigit():
             return [int(x)] + stack
-        else:
+        elif len(stack) >= 2:
             return [_ope_fn(x)(stack[1], stack[0])] + stack[2:]
+        else:
+            raise ValueError("unexpected pattern found")
     return reduce(calc, rpn.split(), [])[0]
 
 

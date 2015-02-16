@@ -24,8 +24,10 @@
     var calc = function (stack, x) {
       if (/^\d+$/.test(x)) {
         return [parseInt(x, 10)].concat(stack);
-      } else {
+      } else if (stack.length >= 2) {
         return [opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2));
+      } else {
+        throw new Error("unexpected pattern found");
       }
     };
     return _.first(_.reduce(rpn.split(/\s+/), calc, []));

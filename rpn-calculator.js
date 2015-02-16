@@ -32,9 +32,11 @@
       elem = expr[i];
       if (/^\d+$/.test(elem)) {
         stack.push(parseInt(elem, 10));
-      } else {
+      } else if (stack.length >= 2) {
         res = opeFn(elem)(stack.pop(), stack.pop());
         stack.push(res);
+      } else {
+        throw new Error("unexpected pattern found");
       }
     }
     return stack.pop();

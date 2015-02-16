@@ -16,9 +16,11 @@ def calculate(rpn):
     for elem in expr:
         if elem.isdigit():
             stack.append(int(elem))
-        else:
+        elif len(stack) >= 2:
             res = _ope_fn(elem)(stack.pop(-2), stack.pop(-1))
             stack.append(res)
+        else:
+            raise ValueError("unexpected pattern found")
     return stack.pop()
 
 

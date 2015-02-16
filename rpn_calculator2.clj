@@ -13,10 +13,14 @@
 
 (defn calculate [rpn]
   (let [calc (fn [stack x]
-               (if (every? #(Character/isDigit %) x)
-                 (cons (Double/parseDouble x) stack)
-                 (let [[y1 y2 & ys] stack]
-                   (cons ((ope-fn x) y2 y1) ys))))
+               (cond
+                 (every? #(Character/isDigit %) x)
+                   (cons (Double/parseDouble x) stack)
+                 (>= (count stack) 2)
+                   (let [[y1 y2 & ys] stack]
+                     (cons ((ope-fn x) y2 y1) ys))
+                 :else
+                   (throw (IllegalArgumentException. "unexpected pattern found"))))
         expr (split rpn #"\s+")]
     (first (reduce calc () expr))))
 

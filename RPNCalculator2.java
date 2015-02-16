@@ -35,10 +35,12 @@ class RPNCalculator2 {
       if (head.chars().allMatch(Character::isDigit)) {
         stack.addFirst(Double.parseDouble(head));
         return calc.apply(stack, tail);
-      } else {
+      } else if (stack.size() >= 2) {
         final double res = opeFn(head).apply(stack.removeFirst(), stack.removeFirst());
         stack.addFirst(res);
         return calc.apply(stack, tail);
+      } else {
+        throw new IllegalArgumentException("unexpected pattern found");
       }
     };
     return calc.apply(new ArrayDeque<>(), Arrays.asList(rpn.split("\\s+")));

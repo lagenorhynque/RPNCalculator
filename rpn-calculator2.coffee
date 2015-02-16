@@ -19,8 +19,10 @@ calculate = (rpn) ->
     [x, xs...] = expr
     if /^\d+$/.test(x)
       calc([parseInt(x, 10)].concat(stack), xs)
-    else
+    else if stack.length >= 2
       calc([opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2)), xs)
+    else
+      throw new Error("unexpected pattern found")
   calc([], rpn.split(/\s+/))
 
 opeFn = (ope) ->

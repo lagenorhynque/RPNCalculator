@@ -16,9 +16,11 @@ module RPNCalculator
     expr.each do |elem|
       if elem =~ /^\d+$/
         stack.push(elem.to_i)
-      else
+      elsif stack.length >= 2
         res = ope_fn(elem).(stack.pop, stack.pop)
         stack.push(res)
+      else
+        raise ArgumentError, "unexpected pattern found"
       end
     end
     stack.pop

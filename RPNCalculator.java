@@ -12,9 +12,11 @@ class RPNCalculator {
     for (String elem : expr) {
       if (NumberUtils.isDigits(elem)) {
         stack.addFirst(Double.parseDouble(elem));
-      } else {
+      } else if (stack.size() >= 2) {
         double res = opeFn(elem, stack.removeFirst(), stack.removeFirst());
         stack.addFirst(res);
+      } else {
+        throw new IllegalArgumentException("unexpected pattern found");
       }
     }
     return stack.removeFirst();

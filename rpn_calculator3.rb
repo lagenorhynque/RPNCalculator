@@ -14,8 +14,10 @@ module RPNCalculator3
     rpn.split.inject([]) { |stack, x|
       if x =~ /^\d+$/
         [x.to_i] + stack
-      else
+      elsif stack.length >= 2
         [ope_fn(x).(stack[0], stack[1])] + stack[2..-1]
+      else
+        raise ArgumentError, "unexpected pattern found"
       end
     }[0]
   end

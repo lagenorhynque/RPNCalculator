@@ -33,8 +33,10 @@
       xs = _.rest(expr);
       if (/^\d+$/.test(x)) {
         return calc([parseInt(x, 10)].concat(stack), xs);
-      } else {
+      } else if (stack.length >= 2) {
         return calc([opeFn(x)(stack[0], stack[1])].concat(_.rest(stack, 2)), xs);
+      } else {
+        throw new Error("unexpected pattern found");
       }
     };
     return calc([], rpn.split(/\s+/));

@@ -19,8 +19,10 @@ module RPNCalculator2
       x, *xs = expr
       if x =~ /^\d+$/
         calc.([x.to_i] + stack, xs)
-      else
+      elsif stack.length >= 2
         calc.([ope_fn(x).(stack[0], stack[1])] + stack[2..-1], xs)
+      else
+        raise ArgumentError, "unexpected pattern found"
       end
     end
     calc.([], rpn.split)
