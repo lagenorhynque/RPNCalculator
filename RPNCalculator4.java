@@ -1,4 +1,4 @@
-// 逆ポーランド記法電卓 (関数型スタイル2)
+// 逆ポーランド記法電卓 (関数型スタイル3)
 
 import java.util.Arrays;
 import java.util.ArrayDeque;
@@ -44,7 +44,7 @@ class RPNCalculator3 {
     if (OPERATORS.containsKey(ope)) {
       return OPERATORS.get(ope);
     } else {
-      throw new IllegalArgumentException(
+      throw new UnsupportedOperationException(
         String.format("unsupported operator '%s' is used", ope));
     }
   }

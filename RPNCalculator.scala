@@ -15,6 +15,7 @@ object RPNCalculator {
             stack match {
               case y1 :: y2 :: ys =>
                 calc(opeFn(x)(y2, y1) :: ys, xs)
+              case _ => throw new IllegalArgumentException("unexpected pattern found")
             }
           }
       }
@@ -29,7 +30,7 @@ object RPNCalculator {
       case "-" => _ - _
       case "*" => _ * _
       case "/" => _ / _
-      case _ => throw new UnsupportedOperationException(s"unsupported operator '${ope}' is used")
+      case _ => throw new IllegalArgumentException(s"unsupported operator '${ope}' is used")
     }
   }
 

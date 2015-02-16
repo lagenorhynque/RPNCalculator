@@ -16,6 +16,7 @@ calculate rpn = head $ foldl' calc [] expr
       | otherwise     =
         case stack of
           (y1:y2:ys) -> opeFn x y2 y1 : ys
+          _          -> error "unexpected pattern found"
     expr = words rpn
 
 opeFn :: Fractional a => String -> a -> a -> a

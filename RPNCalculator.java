@@ -31,7 +31,7 @@ class RPNCalculator {
       case "/":
         return y / x;
       default:
-        throw new UnsupportedOperationException(
+        throw new IllegalArgumentException(
           String.format("unsupported operator '%s' is used", ope));
     }
   }

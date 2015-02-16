@@ -16,7 +16,8 @@ calculate(Rpn) ->
           case Stack of
             [Y1,Y2|Ys] ->
               OpeFn = ope_fn(X),
-              Calc([OpeFn(Y2, Y1) | Ys], Xs)
+              Calc([OpeFn(Y2, Y1) | Ys], Xs);
+            _ -> error("unexpected pattern found")
           end
       end
   end,

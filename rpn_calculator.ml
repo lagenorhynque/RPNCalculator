@@ -18,7 +18,8 @@ end = struct
     | x :: xs when Str.string_match (Str.regexp "^[0-9]+$") x 0 ->
       calc ((float_of_string x) :: stack) xs
     | x :: xs -> match stack with
-      | y1 :: y2 :: ys -> calc (ope_fn x y2 y1 :: ys) xs in
+      | y1 :: y2 :: ys -> calc (ope_fn x y2 y1 :: ys) xs
+      | _ -> failwith "unexpected pattern found" in
     let expr = Str.split (Str.regexp " +") rpn in
     calc [] expr
 end

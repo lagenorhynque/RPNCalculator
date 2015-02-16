@@ -48,7 +48,7 @@ class RPNCalculator2 {
     if (OPERATORS.containsKey(ope)) {
       return OPERATORS.get(ope);
     } else {
-      throw new UnsupportedOperationException(
+      throw new IllegalArgumentException(
         String.format("unsupported operator '%s' is used", ope));
     }
   }

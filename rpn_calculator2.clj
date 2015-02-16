@@ -23,7 +23,7 @@
 (defn- ope-fn [ope]
   (if (contains? operators ope)
     (operators ope)
-    (throw (UnsupportedOperationException.
+    (throw (IllegalArgumentException.
       (format "unsupported operator '%s' is used" ope)))))
 
 ;; 利用例

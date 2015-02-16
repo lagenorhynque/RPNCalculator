@@ -30,7 +30,7 @@ module RPNCalculator2
     if OPERATORS.include?(ope)
       OPERATORS[ope]
     else
-      raise NameError, "unsupported operator '#{ope}' is used"
+      raise ArgumentError, "unsupported operator '#{ope}' is used"
     end
   end
 
