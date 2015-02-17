@@ -15,7 +15,7 @@ end = struct
   let calculate rpn =
     let calc stack = function
     | x when Str.string_match (Str.regexp "^[0-9]+$") x 0 ->
-      (float_of_string x) :: stack
+      float_of_string x :: stack
     | x -> match stack with
       | y1 :: y2 :: ys -> ope_fn x y2 y1 :: ys
       | _ -> failwith "unexpected pattern found" in
