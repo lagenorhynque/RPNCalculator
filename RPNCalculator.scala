@@ -7,7 +7,7 @@ object RPNCalculator {
     @tailrec
     def calc(stack: List[Double], expr: List[String]): Double = {
       expr match {
-        case Nil =>  stack.head
+        case Nil => stack.head
         case x :: xs =>
           if (x.forall { _.isDigit }) {
             calc(x.toDouble :: stack, xs)
