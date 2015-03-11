@@ -53,4 +53,4 @@
   // 利用例
   var rpn = "1 2 + 3 / 4 - 5 *";
   console.log(rpn, "\n = ", RPNCalculator3.calculate(rpn));
-}.call(this));
+}).call(this);
