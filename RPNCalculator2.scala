@@ -14,7 +14,7 @@ object RPNCalculator2 {
       }
     }
     val expr = rpn.split("""\s+""").toList: List[String]
-    expr.foldLeft(List(): List[Double])(calc).head
+    expr.foldLeft(List[Double]())(calc).head
   }
 
   private def opeFn(ope: String): (Double, Double) => Double = {
