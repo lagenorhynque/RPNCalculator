@@ -6,10 +6,10 @@ module RPNCalculator2 : sig
   val calculate : string -> float
 end = struct
   let ope_fn = function
-    | "+" -> ( +. )
-    | "-" -> ( -. )
+    | "+" -> (+.)
+    | "-" -> (-.)
     | "*" -> ( *. )
-    | "/" -> ( /. )
+    | "/" -> (/.)
     | ope -> failwith ("unsupported operator '" ^ ope ^ "' is used")
 
   let calculate rpn =
