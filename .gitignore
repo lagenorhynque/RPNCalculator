@@ -9,6 +9,7 @@ compiled/
 
 # Python
 __pycache__/
+.pydevproject
 
 # Haskell
 *.hi
