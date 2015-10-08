@@ -1,11 +1,11 @@
 -- 逆ポーランド記法電卓 (関数型スタイル3-1)
 
-module RPNCalculator2 (
+module RPNCalculator3_1 (
   calculate,
   main
 ) where
 
-import Control.Applicative ((<$>), (<*>))
+import Control.Applicative ((<*>))
 import Data.Char (isDigit)
 
 calculate :: String -> Maybe Double
@@ -16,16 +16,16 @@ calculate rpn = calc [] expr
       | all isDigit x = calc (Just (read x :: Double) : stack) xs
       | otherwise     =
         case stack of
-          (y1:y2:ys) -> calc (opeFn x y2 y1 : ys) xs
-          _          -> error "unexpected pattern found"
+          (y1:y2:ys) -> calc ((opeFn x <*> y2 <*> y1) : ys) xs
+          _          -> Nothing
     expr = words rpn
 
-opeFn :: Fractional a => String -> Maybe a -> Maybe a -> Maybe a
-opeFn "+" a b = (+) <$> a <*> b
-opeFn "-" a b = (-) <$> a <*> b
-opeFn "*" a b = (*) <$> a <*> b
-opeFn "/" a b = (/) <$> a <*> b
-opeFn _ _ _   = Nothing
+opeFn :: Fractional a => String -> Maybe (a -> a -> a)
+opeFn "+" = Just (+)
+opeFn "-" = Just (-)
+opeFn "*" = Just (*)
+opeFn "/" = Just (/)
+opeFn _   = Nothing
 
 -- 利用例
 main :: IO ()
