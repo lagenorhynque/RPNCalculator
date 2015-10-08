@@ -10,14 +10,14 @@ import Data.Char (isDigit)
 import Data.List (foldl')
 
 calculate :: String -> Maybe Double
-calculate rpn = head $ foldl' calc [] expr
+calculate rpn = head $ foldl' calc [] expr  -- TODO: 空リストでエラーとならないようにする
   where
     calc stack x
       | all isDigit x = Just (read x :: Double) : stack
       | otherwise     =
         case stack of
           (y1:y2:ys) -> (opeFn x <*> y2 <*> y1) : ys
-          _          -> [Nothing]
+          _          -> [Nothing]  -- TODO: RPNCalculator3_1と同様の振る舞いをするように書き換える
     expr = words rpn
 
 opeFn :: Fractional a => String -> Maybe (a -> a -> a)
