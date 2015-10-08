@@ -11,6 +11,7 @@ import Data.Char (isDigit)
 calculate :: String -> Maybe Double
 calculate rpn = calc [] expr
   where
+    calc [] []    = Nothing
     calc stack [] = head stack
     calc stack (x:xs)
       | all isDigit x = calc (Just (read x :: Double) : stack) xs
