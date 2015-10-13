@@ -8,6 +8,16 @@ module RPNCalculator3_1 (
 import Control.Applicative ((<*>))
 import Data.Char (isDigit)
 
+-- | 逆ポーランド記法の文字列を読み込み、計算する。
+--
+-- >>> calculate "1 2 + 3 / 4 - 5 *"
+-- Just (-15.0)
+-- >>> calculate "1 2 + 3 & 4 - 5 *"
+-- Nothing
+-- >>> calculate "1 2 + / 3 4 - 5 *"
+-- Nothing
+-- >>> calculate ""
+-- Nothing
 calculate :: String -> Maybe Double
 calculate rpn = calc [] expr
   where

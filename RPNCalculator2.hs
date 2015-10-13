@@ -8,8 +8,20 @@ module RPNCalculator2 (
 import Data.Char (isDigit)
 import Data.List (foldl')
 
+-- | 逆ポーランド記法の文字列を読み込み、計算する。
+--
+-- >>> calculate "1 2 + 3 / 4 - 5 *"
+-- -15.0
+-- >>> calculate "1 2 + 3 & 4 - 5 *"
+-- *** Exception: unsupported operator '&' is used
+-- >>> calculate "1 2 + / 3 4 - 5 *"
+-- *** Exception: unexpected pattern found
+-- >>> calculate ""
+-- *** Exception: empty input
 calculate :: String -> Double
-calculate rpn = head $ foldl' calc [] expr
+calculate rpn = case expr of
+  [] -> error "empty input"
+  _  -> head $ foldl' calc [] expr
   where
     calc stack x
       | all isDigit x = (read x :: Double) : stack
