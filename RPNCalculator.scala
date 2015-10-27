@@ -5,11 +5,11 @@ import scala.annotation.tailrec
 object RPNCalculator {
   def calculate(rpn: String): Double = {
     @tailrec
-    def calc(stack: List[Double], expr: List[String]): Double = {
+    def calc(stack: List[Double], expr: List[String]): Double =
       expr match {
         case Nil => stack.head
         case x :: xs =>
-          if (x.forall { _.isDigit }) {
+          if (x.forall(_.isDigit)) {
             calc(x.toDouble :: stack, xs)
           } else {
             stack match {
@@ -19,12 +19,12 @@ object RPNCalculator {
             }
           }
       }
-    }
+
     val expr = rpn.split("""\s+""").toList
     calc(List(), expr)
   }
 
-  private def opeFn(ope: String): (Double, Double) => Double = {
+  private def opeFn(ope: String): (Double, Double) => Double =
     ope match {
       case "+" => _ + _
       case "-" => _ - _
@@ -32,7 +32,6 @@ object RPNCalculator {
       case "/" => _ / _
       case _ => throw new IllegalArgumentException(s"unsupported operator '${ope}' is used")
     }
-  }
 
   def main(args: Array[String]): Unit = {
     // 利用例
