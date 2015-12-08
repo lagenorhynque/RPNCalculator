@@ -19,6 +19,9 @@ __pycache__/
 # Erlang
 *.beam
 
+# IntelliJ
+.idea/
+
 # Eclipse
 .project
 .classpath
